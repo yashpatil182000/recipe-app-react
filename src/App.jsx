@@ -1,8 +1,9 @@
 import Hero from "./components/Hero";
-import Num1Recipe from "./components/Num1Recipe";
+import TastyTreasuresLogo from "./assets/TastyTreasuresLogo.png";
 import PopularPicks from "./components/PopularPicks";
 import VegeterianPick from "./components/VegeterianPick";
-import TastyTreasuresLogo from "./assets/TastyTreasuresLogo.png";
+import NonVegPicks from "./components/NonVegPicks";
+import Num1Recipe from "./components/Num1Recipe";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Hero />
       <PopularPicks />
       <VegeterianPick />
+      <NonVegPicks />
       <Num1Recipe />
     </div>
   );

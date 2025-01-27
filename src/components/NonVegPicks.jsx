@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ErrorImg from "../assets/unavailable-img.jpg";
 
-function VegeterianPick() {
+function NonVegPicks() {
   const settings = {
     infinite: true,
     speed: 500,
@@ -40,7 +40,7 @@ function VegeterianPick() {
   };
   const [recipeList, setRecipeList] = useState([]);
   const fetchRecipes = async () => {
-    const checkLocalStorage = localStorage.getItem("Veg-recipes");
+    const checkLocalStorage = localStorage.getItem("Nonveg-recipes");
 
     if (checkLocalStorage) {
       setRecipeList(JSON.parse(checkLocalStorage));
@@ -50,11 +50,11 @@ function VegeterianPick() {
       const api = await fetch(
         `https://api.spoonacular.com/recipes/random?number=10&apiKey=${
           import.meta.env.VITE_RECIPE_APP_API_KEY
-        }&tags=vegetarian`
+        }&tags=chicken,seafood&excludeIngredients=tofu,paneer,lentils`
       );
       const data = await api.json();
       console.log(data);
-      localStorage.setItem("Veg-recipes", JSON.stringify(data.recipes));
+      localStorage.setItem("Nonveg-recipes", JSON.stringify(data.recipes));
       setRecipeList(data.recipes);
     }
   };
@@ -65,9 +65,9 @@ function VegeterianPick() {
 
   return (
     <>
-      <div className="bg-[#2B2525] flex flex-col md:flex-row justify-center items-center py-10 md:px-20">
+      <div className=" flex flex-col md:flex-row justify-center items-center py-10 md:px-20">
         <div className="md:w-[25%] w-fit mb-5 md:mb-0 ">
-          <p className="text-4xl text-red-800">Vegetarian Picks</p>
+          <p className="text-4xl text-red-800">Non-Veg Picks</p>
         </div>
         <div className="w-[70%]">
           <Slider {...settings}>
@@ -75,7 +75,7 @@ function VegeterianPick() {
               return (
                 <div
                   key={recipe.id}
-                  className="p-2 rounded-lg bg-[#181515] h-75 cursor-pointer"
+                  className="p-2 rounded-lg bg-[#2B2525] h-75 cursor-pointer"
                 >
                   <div className="overflow-hidden rounded-lg">
                     <img
@@ -95,4 +95,4 @@ function VegeterianPick() {
   );
 }
 
-export default VegeterianPick;
+export default NonVegPicks;

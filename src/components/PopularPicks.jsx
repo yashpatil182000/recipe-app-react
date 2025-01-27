@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ErrorImg from "../assets/unavailable-img.jpg";
+
 
 function PopularPicks() {
   const settings = {
@@ -79,7 +81,7 @@ function PopularPicks() {
                 >
                   <div className="overflow-hidden rounded-lg">
                     <img
-                      src={recipe.image}
+                      src={recipe.image ? recipe.image : ErrorImg}
                       className="rounded-lg hover:scale-[1.08] duration-200"
                       alt=""
                     />
