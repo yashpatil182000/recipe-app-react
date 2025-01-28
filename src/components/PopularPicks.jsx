@@ -3,9 +3,7 @@ import { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ErrorImg from "../assets/unavailable-img.jpg";
-import NonvegIcon from "../assets/non-veg.png";
-import VegIcon from "../assets/veg.png";
+import RecipeCard from "./RecipeCard";
 
 function PopularPicks() {
   const settings = {
@@ -78,34 +76,40 @@ function PopularPicks() {
           <Slider {...settings}>
             {recipeList.map((recipe) => {
               return (
-                <div
+                // <div
+                //   key={recipe.id}
+                //   className="p-2 rounded-lg bg-[#2E2727] h-75 cursor-pointer relative"
+                // >
+                //   <div className="overflow-hidden rounded-lg ">
+                //     <img
+                //       src={recipe.image ? recipe.image : ErrorImg}
+                //       className="rounded-lg hover:scale-[1.08] duration-200 "
+                //       alt=""
+                //     />
+                //   </div>
+                //   <div
+                //     className={`absolute top-2 right-0 text-xs rounded-s-xl px-2 py-1 flex items-center ${
+                //       recipe.vegetarian ? "bg-green-800" : " bg-red-800"
+                //     } shadow-sm shadow-black `}
+                //   >
+                //     <span>
+                //       <img
+                //         src={recipe.vegetarian ? VegIcon : NonvegIcon}
+                //         width={"20px"}
+                //         className="me-1"
+                //         alt=""
+                //       />
+                //     </span>
+                //     {recipe.vegetarian ? "Veg" : "Non Veg"}
+                //   </div>
+                //   <p className="text-lg m-3">{recipe.title}</p>
+                // </div>
+                <RecipeCard
                   key={recipe.id}
-                  className="p-2 rounded-lg bg-[#2E2727] h-75 cursor-pointer relative"
-                >
-                  <div className="overflow-hidden rounded-lg ">
-                    <img
-                      src={recipe.image ? recipe.image : ErrorImg}
-                      className="rounded-lg hover:scale-[1.08] duration-200 "
-                      alt=""
-                    />
-                  </div>
-                  <div
-                    className={`absolute top-2 right-0 text-xs rounded-s-xl px-2 py-1 flex items-center ${
-                      recipe.vegetarian ? "bg-green-800" : " bg-red-800"
-                    } shadow-sm shadow-black `}
-                  >
-                    <span>
-                      <img
-                        src={recipe.vegetarian ? VegIcon : NonvegIcon}
-                        width={"20px"}
-                        className="me-1"
-                        alt=""
-                      />
-                    </span>
-                    {recipe.vegetarian ? "Veg" : "Non Veg"}
-                  </div>
-                  <p className="text-lg m-3">{recipe.title}</p>
-                </div>
+                  image={recipe.image}
+                  title={recipe.title}
+                  vegetarian={recipe.vegetarian}
+                />
               );
             })}
           </Slider>

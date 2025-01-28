@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ErrorImg from "../assets/unavailable-img.jpg";
+import RecipeCard from "./RecipeCard";
 
 function NonVegPicks() {
   const settings = {
@@ -73,19 +73,12 @@ function NonVegPicks() {
           <Slider {...settings}>
             {recipeList.map((recipe) => {
               return (
-                <div
+                <RecipeCard
                   key={recipe.id}
-                  className="p-2 rounded-lg bg-[#2B2525] h-75 cursor-pointer"
-                >
-                  <div className="overflow-hidden rounded-lg">
-                    <img
-                      src={recipe.image ? recipe.image : ErrorImg}
-                      className="rounded-lg hover:scale-[1.08] duration-200"
-                      alt=""
-                    />
-                  </div>
-                  <p className="text-lg m-3">{recipe.title}</p>
-                </div>
+                  image={recipe.image}
+                  title={recipe.title}
+                  vegetarian={recipe.vegetarian}
+                />
               );
             })}
           </Slider>
