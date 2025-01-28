@@ -66,7 +66,7 @@ function NonVegPicks() {
   return (
     <>
       <div className=" flex flex-col md:flex-row justify-center items-center py-10 md:px-20">
-        <div className="md:w-[25%] w-fit mb-5 md:mb-0 ">
+        <div className="md:w-[25%] w-fit mb-5 md:mb-0 flex">
           <p className="text-4xl text-red-800">Non-Veg Picks</p>
         </div>
         <div className="w-[70%]">

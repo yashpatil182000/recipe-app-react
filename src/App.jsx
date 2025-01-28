@@ -4,6 +4,7 @@ import PopularPicks from "./components/PopularPicks";
 import VegeterianPick from "./components/VegeterianPick";
 import NonVegPicks from "./components/NonVegPicks";
 import Num1Recipe from "./components/Num1Recipe";
+import JokeSection from "./components/JokeSection";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <VegeterianPick />
       <NonVegPicks />
       <Num1Recipe />
+      <JokeSection />
     </div>
   );
 }
