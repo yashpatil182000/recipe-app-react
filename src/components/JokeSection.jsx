@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 function JokeSection() {
   const foodJokes = [
@@ -54,13 +55,21 @@ function JokeSection() {
           <div className="flex flex-wrap justify-center">
             {foodJokes.map((joke, id) => {
               return (
-                <div
+                <motion.div
                   key={id}
                   className="bg-[#181515]/85 border rounded-xl w-fit p-4 m-1 hover:scale-[1.3]  hover:shadow-black shadow-lg duration-200"
+                  initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{
+                    duration: 0.5,
+                    ease: "easeOut",
+                    delay: id * 0.1,
+                  }}
+                  viewport={{ once: false, amount: 0.2 }}
                 >
                   <p>Question : {joke.question}</p>
                   <p>Answer : {joke.answer}</p>
-                </div>
+                </motion.div>
               );
             })}
           </div>

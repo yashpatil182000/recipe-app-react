@@ -1,5 +1,5 @@
 import React from "react";
-
+import { motion } from "framer-motion";
 function Hero() {
   return (
     <div
@@ -7,7 +7,13 @@ function Hero() {
       bg-contain md:bg-cover flex items-start md:items-center
 "
     >
-      <div className="md:w-[50%] w-[80%] md:px-10 mt-8 md:mt-0 px-5 ">
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ amount: 0.2 }}
+        className="md:w-[50%] w-[80%] md:px-10 mt-8 md:mt-0 px-5 "
+      >
         <p className="text-lg md:text-5xl mb-2 ">
           Every Recipe You Need, <br /> One Click Away
         </p>
@@ -15,7 +21,7 @@ function Hero() {
           Browse, cook, and enjoy with our extensive recipe collection. Whether
           you’re a novice or an expert, there’s something here for everyone!
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 }

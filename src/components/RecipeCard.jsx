@@ -5,7 +5,9 @@ import VegIcon from "../assets/veg.png";
 
 function RecipeCard({ image, title, vegetarian, className }) {
   return (
-    <div className={`p-2 rounded-lg h-75 cursor-pointer relative ${className}`}>
+    <div
+      className={`p-2 rounded-lg h-75 cursor-pointer relative hover:shadow-md m-2 shadow-cyan-800 ${className}`}
+    >
       <div className="overflow-hidden rounded-lg ">
         <img
           src={image ? image : ErrorImg}

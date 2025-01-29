@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Num1Recipe() {
   const [recipe, setRecipe] = useState([]);
@@ -36,23 +37,35 @@ function Num1Recipe() {
         recipe.map((rec) => (
           <div
             key={rec.id}
-            className="flex flex-col md:flex-row justify-center items-center w-full gap-4"
+            className="flex flex-col md:flex-row justify-center items-center w-full gap-4 overflow-hidden"
           >
-            <div className="w-full md:w-[60%] px-4">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              viewport={{ amount: 0.1 }}
+              className="w-full md:w-[60%] px-4"
+            >
               <h2 className="text-3xl mb-5">{rec.title}</h2>
               <p
                 className="text-base/7 mb-5"
                 dangerouslySetInnerHTML={{ __html: rec.summary }}
               ></p>
               <Link to={`/recipes/${rec.id}`}>
-                <a className="border px-4 py-1 rounded-2xl hover:bg-[#110f0f] duration-200">
+                <p className="cursor-pointer w-fit border px-4 py-1 rounded-2xl hover:bg-[#110f0f] hover:shadow-md m-2 shadow-cyan-800 duration-200">
                   View Recipe
-                </a>
+                </p>
               </Link>
-            </div>
-            <div className="w-full md:w-[40%] px-4">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              viewport={{ amount: 0.1 }}
+              className="w-full md:w-[40%] px-4"
+            >
               <img src={rec.image} className="rounded-lg " />
-            </div>
+            </motion.div>
           </div>
         ))}
     </div>

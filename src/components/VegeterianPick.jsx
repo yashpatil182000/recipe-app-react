@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import RecipeCard from "./RecipeCard";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function VegeterianPick() {
   const settings = {
@@ -66,27 +67,35 @@ function VegeterianPick() {
 
   return (
     <>
-      <div className="bg-[#2B2525] flex flex-col md:flex-row justify-center items-center py-10 md:px-20">
-        <div className="md:w-[25%] w-fit mb-5 md:mb-0 ">
-          <p className="text-4xl text-red-800">Vegetarian Picks</p>
-        </div>
-        <div className="w-[70%]">
-          <Slider {...settings}>
-            {recipeList.map((recipe, id) => {
-              return (
-                <Link to={`/recipes/${recipe.id}`} key={id}>
-                  <RecipeCard
-                    key={recipe.id}
-                    image={recipe.image}
-                    title={recipe.title}
-                    vegetarian={recipe.vegetarian}
-                    className={"bg-[#181515]"}
-                  />
-                </Link>
-              );
-            })}
-          </Slider>
-        </div>
+      <div className="bg-[#2B2525]">
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ amount: 0.2 }}
+          className=" flex flex-col md:flex-row justify-center items-center py-10 md:px-20"
+        >
+          <div className="md:w-[25%] w-fit mb-5 md:mb-0 ">
+            <p className="text-4xl text-red-800">Vegetarian Picks</p>
+          </div>
+          <div className="w-[70%]">
+            <Slider {...settings}>
+              {recipeList.map((recipe, id) => {
+                return (
+                  <Link to={`/recipes/${recipe.id}`} key={id}>
+                    <RecipeCard
+                      key={recipe.id}
+                      image={recipe.image}
+                      title={recipe.title}
+                      vegetarian={recipe.vegetarian}
+                      className={"bg-[#181515]"}
+                    />
+                  </Link>
+                );
+              })}
+            </Slider>
+          </div>
+        </motion.div>
       </div>
     </>
   );

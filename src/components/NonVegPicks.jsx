@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import RecipeCard from "./RecipeCard";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function NonVegPicks() {
   const settings = {
@@ -65,7 +66,13 @@ function NonVegPicks() {
 
   return (
     <>
-      <div className=" flex flex-col md:flex-row justify-center items-center py-10 md:px-20">
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        viewport={{ amount: 0.2 }}
+        className=" flex flex-col md:flex-row justify-center items-center py-10 md:px-20"
+      >
         <div className="md:w-[25%] w-fit mb-5 md:mb-0 flex">
           <p className="text-4xl text-red-800">Non-Veg Picks</p>
         </div>
@@ -86,7 +93,7 @@ function NonVegPicks() {
             })}
           </Slider>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
