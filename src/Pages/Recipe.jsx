@@ -79,7 +79,7 @@ function Recipe() {
           </motion.div>
           <div className="bg-[#2B2525] py-15">
             <p className="text-2xl mb-5 text-center">Ingredients: </p>
-            <div className="flex flex-wrap gap-5 justify-center">
+            <div className="flex flex-wrap gap-5 justify-center px-3">
               {recipe.extendedIngredients ? (
                 recipe.extendedIngredients.map((ingredient, index) => {
                   return (
