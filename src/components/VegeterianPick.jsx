@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import RecipeCard from "./RecipeCard";
+import { Link } from "react-router-dom";
 
 function VegeterianPick() {
   const settings = {
@@ -44,17 +45,17 @@ function VegeterianPick() {
 
     if (checkLocalStorage) {
       setRecipeList(JSON.parse(checkLocalStorage));
-      console.log("local Storage data");
+      console.log("Veg Recipe :: local Storage data");
     } else {
-      console.log("calling Api...");
       const api = await fetch(
         `https://api.spoonacular.com/recipes/random?number=10&apiKey=${
           import.meta.env.VITE_RECIPE_APP_API_KEY
         }&tags=vegetarian`
       );
       const data = await api.json();
-      console.log(data);
       localStorage.setItem("Veg-recipes", JSON.stringify(data.recipes));
+      console.log("Veg Recipe :: API call");
+
       setRecipeList(data.recipes);
     }
   };
@@ -71,14 +72,17 @@ function VegeterianPick() {
         </div>
         <div className="w-[70%]">
           <Slider {...settings}>
-            {recipeList.map((recipe) => {
+            {recipeList.map((recipe, id) => {
               return (
-                <RecipeCard
-                  key={recipe.id}
-                  image={recipe.image}
-                  title={recipe.title}
-                  vegetarian={recipe.vegetarian}
-                />
+                <Link to={`/recipes/${recipe.id}`} key={id}>
+                  <RecipeCard
+                    key={recipe.id}
+                    image={recipe.image}
+                    title={recipe.title}
+                    vegetarian={recipe.vegetarian}
+                    className={"bg-[#181515]"}
+                  />
+                </Link>
               );
             })}
           </Slider>

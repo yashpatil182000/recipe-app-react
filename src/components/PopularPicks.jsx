@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import RecipeCard from "./RecipeCard";
+import { Link } from "react-router-dom";
 
 function PopularPicks() {
   const settings = {
@@ -44,23 +45,22 @@ function PopularPicks() {
 
     if (checkLocalStorage) {
       setRecipeList(JSON.parse(checkLocalStorage));
-      console.log("local Storage data");
+      console.log("Popular picks :: local Storage data");
     } else {
-      console.log("calling Api...");
-
       const api = await fetch(
         `https://api.spoonacular.com/recipes/random?number=10&apiKey=${
           import.meta.env.VITE_RECIPE_APP_API_KEY
         }`
       );
       const data = await api.json();
-      console.log(data);
       localStorage.setItem("Popular-recipes", JSON.stringify(data.recipes));
+      console.log("Popular picks :: API call");
+
       setRecipeList(data.recipes);
     }
   };
 
-  console.log("recipeLissssst:", recipeList);
+  // console.log("recipeLissssst:", recipeList);
 
   useEffect(() => {
     fetchRecipes();
@@ -74,42 +74,17 @@ function PopularPicks() {
         </div>
         <div className="w-[70%]">
           <Slider {...settings}>
-            {recipeList.map((recipe) => {
+            {recipeList.map((recipe, id) => {
               return (
-                // <div
-                //   key={recipe.id}
-                //   className="p-2 rounded-lg bg-[#2E2727] h-75 cursor-pointer relative"
-                // >
-                //   <div className="overflow-hidden rounded-lg ">
-                //     <img
-                //       src={recipe.image ? recipe.image : ErrorImg}
-                //       className="rounded-lg hover:scale-[1.08] duration-200 "
-                //       alt=""
-                //     />
-                //   </div>
-                //   <div
-                //     className={`absolute top-2 right-0 text-xs rounded-s-xl px-2 py-1 flex items-center ${
-                //       recipe.vegetarian ? "bg-green-800" : " bg-red-800"
-                //     } shadow-sm shadow-black `}
-                //   >
-                //     <span>
-                //       <img
-                //         src={recipe.vegetarian ? VegIcon : NonvegIcon}
-                //         width={"20px"}
-                //         className="me-1"
-                //         alt=""
-                //       />
-                //     </span>
-                //     {recipe.vegetarian ? "Veg" : "Non Veg"}
-                //   </div>
-                //   <p className="text-lg m-3">{recipe.title}</p>
-                // </div>
-                <RecipeCard
-                  key={recipe.id}
-                  image={recipe.image}
-                  title={recipe.title}
-                  vegetarian={recipe.vegetarian}
-                />
+                <Link to={`/recipes/${recipe.id}`} key={id}>
+                  <RecipeCard
+                    key={recipe.id}
+                    image={recipe.image}
+                    title={recipe.title}
+                    vegetarian={recipe.vegetarian}
+                    className={"bg-[#2E2727]"}
+                  />
+                </Link>
               );
             })}
           </Slider>

@@ -1,24 +1,12 @@
-import Hero from "./components/Hero";
-import TastyTreasuresLogo from "./assets/TastyTreasuresLogo.png";
-import PopularPicks from "./components/PopularPicks";
-import VegeterianPick from "./components/VegeterianPick";
-import NonVegPicks from "./components/NonVegPicks";
-import Num1Recipe from "./components/Num1Recipe";
-import JokeSection from "./components/JokeSection";
+import Home from "./Pages/Home";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div>
-      <div className="bg-[#2B2525] py-5 flex justify-center">
-        <img src={TastyTreasuresLogo} alt="" />
-      </div>
-      <Hero />
-      <PopularPicks />
-      <VegeterianPick />
-      <NonVegPicks />
-      <Num1Recipe />
-      <JokeSection />
-    </div>
+    <>
+      <Navbar />
+      <Home />
+    </>
   );
 }
 

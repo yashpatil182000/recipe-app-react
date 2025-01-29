@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Num1Recipe() {
   const [recipe, setRecipe] = useState([]);
@@ -7,23 +8,20 @@ function Num1Recipe() {
 
     if (checkLocalStorage) {
       setRecipe(JSON.parse(checkLocalStorage));
-      console.log("local Storage data");
+      console.log("Number One Recipe :: Local Data Storage");
     } else {
-      console.log("calling Api Num one...");
-
       const api = await fetch(
         `https://api.spoonacular.com/recipes/random?apiKey=${
           import.meta.env.VITE_RECIPE_APP_API_KEY
         }`
       );
       const data = await api.json();
-      console.log("numOne:", data.recipes);
       localStorage.setItem("NumOne-Recipe", JSON.stringify(data.recipes));
+      console.log("Number One Recipe :: API call");
+
       setRecipe(data.recipes);
     }
   };
-
-  console.log("recipeee:", recipe);
 
   useEffect(() => {
     fetchNum1Recipes();
@@ -46,12 +44,11 @@ function Num1Recipe() {
                 className="text-base/7 mb-5"
                 dangerouslySetInnerHTML={{ __html: rec.summary }}
               ></p>
-              <a
-                href=""
-                className="border px-4 py-1 rounded-2xl hover:bg-[#110f0f] duration-200"
-              >
-                View Recipe
-              </a>
+              <Link to={`/recipes/${rec.id}`}>
+                <a className="border px-4 py-1 rounded-2xl hover:bg-[#110f0f] duration-200">
+                  View Recipe
+                </a>
+              </Link>
             </div>
             <div className="w-full md:w-[40%] px-4">
               <img src={rec.image} className="rounded-lg " />
