@@ -5,6 +5,7 @@ import "./index.css";
 import Home from "./Pages/Home.jsx";
 import Recipe from "./Pages/Recipe.jsx";
 import Layout from "./Layout.jsx";
+import SearchRecipe from "./Pages/SearchRecipe.jsx";
 
 const route = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const route = createBrowserRouter([
       {
         path: `/recipes/:id`,
         element: <Recipe />,
+      },
+      {
+        path: `/search-recipe/:id`,
+        element: <SearchRecipe />,
       },
     ],
   },
